@@ -17,9 +17,7 @@ import {
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-export function Header({
-	isAuthenticated,
-}: { isAuthenticated: boolean | undefined }) {
+export function Header() {
 	const hydrated = useHydrated();
 	const [, rerender] = React.useState({});
 	const setTheme = React.useCallback((theme: string) => {
@@ -27,6 +25,7 @@ export function Header({
 		rerender({});
 	}, []);
 	const theme = getTheme();
+	const isAuthenticated = false;
 
 	return (
 		<>

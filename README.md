@@ -4,37 +4,25 @@
 
 ## Getting Started
 
-Node Server:
+### Classic Route page starter.
+ * loader tagastab json kujul nt kasutaja vmt mis db-st või mujalt pärida
+ * About() nimi võib olla mida iganes aga peab olema default export, see mis on default export on see mis renderdataks
+ * React komponentidel sisu kuvamiseks on {muutujaNimi} vaja kasutada
+ * TS/JS on muutujad let või const. Nt let test = "test" või const test = "test"
+```typescript
+export async function loader({request}: LoaderFunctionArgs) {
+    return json({test: "test"});
+}
 
-```sh
-npx create-remix@latest --template jacob-ebey/remix-shadcn
+export default function About() {
+    const {test} = useLoaderData<typeof loader>();
+    return (
+        <>
+            <h1>Hello {test}</h1>
+        </>
+);
+}
 ```
-
-Cloudflare Pages:
-
-```shellscript
-npx create-remix@latest --template https://github.com/jacob-ebey/remix-shadcn/tree/cloudflare
-```
-
-Or for a more flushed out template with a login flow and a SQLite database backed by Drizzle ORM:
-
-Node Server:
-
-```shellscript
-npx create-remix@latest --template https://github.com/jacob-ebey/remix-shadcn/tree/drizzle
-```
-
-Cloudflare Pages:
-
-```shellscript
-npx create-remix@latest --template https://github.com/jacob-ebey/remix-shadcn/tree/drizzle-cloudflare
-```
-
-## Built in theme switcher
-
-![image](https://github.com/jacob-ebey/remix-shadcn/assets/12063586/c6ed812c-764f-46b7-af30-26284f55535c)
-
-![image](https://github.com/jacob-ebey/remix-shadcn/assets/12063586/4e378230-3b4b-4b78-8af4-096b30aacf79)
 
 ## Development
 

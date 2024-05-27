@@ -29,7 +29,10 @@ function App({ children }: { children: React.ReactNode }) {
 			</head>
 			<body>
 				<GlobalPendingIndicator />
+				<Header/>
 				{children}
+				{/*TODO-KASPAR Footer siia lisada, uncomment järgmine rida*/}
+				{/*<Footer/>*/}
 				<ScrollRestoration />
 				<Scripts />
 			</body>
