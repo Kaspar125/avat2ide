@@ -23,11 +23,24 @@ export const user = sqliteTable("user", {
 	displayName: text("display_name").notNull(),
 });
 
+// TODO-KASPAR täida ära ja võta kasutsusse
+export const product = sqliteTable("product", {
+	id: stringId("id"),
+});
+// TODO-KASPAR täida ära ja võta kasutsusse
+
+export const contact = sqliteTable("contact", {
+	id: stringId("id"),
+});
+
 const schema = {
 	password,
 	user,
+	product,
+	contact,
 };
-
+// TODO-KASPAR kui andmeväljad olemas jooksuta npm run generate:migration
+// TODO-KASPAR uuri https://orm.drizzle.team/docs/get-started-sqlite
 export default schema;
 
 export type DB = BaseSQLiteDatabase<"async" | "sync", unknown, typeof schema>;

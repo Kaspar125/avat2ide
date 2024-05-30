@@ -4,7 +4,7 @@ import { SqliteError } from "better-sqlite3";
 import { and, eq } from "drizzle-orm";
 
 import { password, user } from "@/db.server/schema";
-
+// TODO-KASPAR siin näited kuidas lisatakse ja võetakse andmeid andmebaasist
 export async function createUser(
 	{ DB }: AppLoadContext,
 	{

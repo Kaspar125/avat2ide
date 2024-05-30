@@ -79,10 +79,10 @@ export default function About() {
         <iframe
           width="600"
           height="500"
-          frameborder="0"
+          frameBorder="0"
           scrolling="no"
-          marginheight="0"
-          marginwidth="0"
+          marginHeight="0"
+          marginWidth="0"
           src="https://maps.google.com/maps?width=700&amp;height=600&amp;hl=en&amp;q=Voolu%203,%20Kuressaare,%2093815%20Saare%20maakond+(Avat%C3%A4ide)&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
         ></iframe>
       </div>
