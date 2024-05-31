@@ -23,7 +23,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
   return json({ test: "kontakt" });
 }
 
-export default function About() {
+export default function contact() {
   const { test } = useLoaderData<typeof loader>();
   return (
     <div className="border-2 border-indigo-500 flex min-h-screen place-content-center space-x-8">
