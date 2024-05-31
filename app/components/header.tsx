@@ -30,19 +30,30 @@ export function Header() {
   return (
     <>
       <Form id="logout-form" method="POST" action="/logout" />
-      <header className="flex items-center justify-between px-4 py-2 md:py-4 ">
+      <header
+        className="flex items-center justify-between px-4 py-2 md:py-4 "
+        // style={Background image style={{backgroundImage:'/navbar.png'}}}
+      >
         <div className="flex items-center space-x-4 ">
           <Link className="flex items-center space-x-2" to="/">
             {/* <HomeIcon className="h-6 w-6" /> */}
-            <span className="text-lg font-bold ">Avatäide</span>
+            {/* <span className="text-lg font-bold ">Avatäide</span> */}
+            <img src="logo1.png" alt="1" width="150" height="100"></img>
           </Link>
         </div>
         <div className="flex items-center space-x-8 ">
-          <span className="text-lg font-bold">Tooted</span>
-          <span className="text-lg font-bold">Firmast</span>
-          <span className="text-lg font-bold">Hinnapäring</span>
-          <span className="text-lg font-bold">Kontakt</span>
-
+          <Link className="space-x-2" to="/tooted">
+            <span className="text-lg font-bold">Tooted</span>
+          </Link>
+          <Link className="space-x-2" to="/firmast">
+            <span className="text-lg font-bold">Firmast</span>
+          </Link>
+          <Link className="space-x-2" to="/hinnapäring">
+            <span className="text-lg font-bold">Hinnapäring</span>
+          </Link>
+          <Link className="space-x-2" to="/kontakt">
+            <span className="text-lg font-bold">Kontakt</span>
+          </Link>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
