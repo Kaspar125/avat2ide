@@ -24,6 +24,10 @@ export default function About() {
 }
 ```
 
+### componendid
+Siin on ka head liikuvad komponendid
+https://ui.aceternity.com/components
+
 ## Development
 
 Run the Vite dev server:
