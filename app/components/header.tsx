@@ -46,7 +46,7 @@ export function Header() {
                     <Link className="space-x-2" to="/firmast">
                         <span className="text-lg font-bold">Firmast</span>
                     </Link>
-                    <Link className="space-x-2" to="/hinnapäring">
+                    <Link className="space-x-2" to="/hinnaparing">
                         <span className="text-lg font-bold">Hinnapäring</span>
                     </Link>
                     <Link className="space-x-2" to="/kontakt">
