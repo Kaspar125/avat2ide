@@ -5,8 +5,6 @@ import { createRequestHandler } from "@remix-run/express";
 import { installGlobals } from "@remix-run/node";
 import Database from "better-sqlite3";
 import compression from "compression";
-import { drizzle } from "drizzle-orm/better-sqlite3";
-import { migrate } from "drizzle-orm/better-sqlite3/migrator";
 import express from "express";
 import morgan from "morgan";
 
@@ -40,23 +38,13 @@ fs.mkdirSync(dbDir, { recursive: true });
 const sqlite = new Database(path.resolve(dbDir, "database.db"));
 fs.mkdirSync(dbDir, { recursive: true });
 
-migrate(drizzle(sqlite), {
-	migrationsFolder: "./migrations",
-});
-
 // Create a request handler for Remix
 const remixHandler = createRequestHandler({
 	build: viteDevServer
 		? () => viteDevServer.ssrLoadModule("virtual:remix/server-build")
 		: () => import("./build/server/index.js"),
 	async getLoadContext() {
-		const { default: schema } = await (viteDevServer
-			? viteDevServer.ssrLoadModule("./app/db.server/schema.ts")
-			: import("./build/server/index2.js"));
-		const DB = drizzle(sqlite, { schema });
-
 		return {
-			DB,
 			SESSION_SECRET,
 		};
 	},

@@ -10,7 +10,7 @@ export default defineConfig(({ isSsrBuild }) => ({
 		},
 	},
 	optimizeDeps: {
-		exclude: ["bcryptjs", "better-sqlite3", "drizzle-orm", "fsevents"],
+		exclude: ["bcryptjs", "better-sqlite3", "fsevents"],
 	},
 	plugins: [
 		envOnly(),
@@ -36,7 +36,6 @@ export default defineConfig(({ isSsrBuild }) => ({
 							...userConfig.build,
 							rollupOptions: {
 								...userConfig.build?.rollupOptions,
-								input: [userInput, "./app/db.server/schema.ts"],
 							},
 						},
 					};
