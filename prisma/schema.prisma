@@ -7,20 +7,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Issue {
-  id          Int      @id @default(autoincrement())
-  draftId     String   @unique
-  title       String
-  description String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  files       File[]
-}
-
-model File {
-  url       String   @id @unique
+model Contact {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String
+  message   String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  issue     Issue    @relation(fields: [issueId], references: [id])
-  issueId   Int
 }
