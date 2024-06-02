@@ -1,43 +1,97 @@
-import { ActionFunctionArgs, json, LoaderFunctionArgs } from "@remix-run/node";
-import { db } from "@/lib/db.server";
-import { Form, useLoaderData } from "@remix-run/react";
+import { json, LoaderFunctionArgs } from "@remix-run/node";
+import { useLoaderData } from "@remix-run/react";
 import { Button } from "@/components/ui/button";
+import { Link } from "@remix-run/react";
 
-export async function action({ request }: ActionFunctionArgs) {
-  let randomId = (Math.random() + 1).toString(36).substring(7);
-  let randomId2 = (Math.random() + 1).toString(36).substring(3);
-  await db.contact.create({
-    data: {
-      name: randomId,
-      email: randomId2,
-      message: randomId,
-    },
-  });
-  return {
-    success: true,
-  };
-}
 export async function loader({ request }: LoaderFunctionArgs) {
-  const issue = await db.contact.findMany();
-  return json({
-    issue,
-  });
+  return json({ test: "test" });
 }
-export default function Index() {
-  const { issue } = useLoaderData<typeof loader>();
+
+export default function About() {
+  const { test } = useLoaderData<typeof loader>();
   return (
-    <div className={"flex justify-center my-12 mx-8"}>
-      <h1> Items </h1>
-      <ul className={"flex mt-4"}>
-        {issue.map((item) => (
-          <li key={item.id}>{item.name}</li>
-        ))}
-      </ul>
-      <Form method="POST" className={"mt-8"}>
-        <Button type="submit" value="Submit">
-          SUBMIT
-        </Button>
-      </Form>
-    </div>
+    <>
+      <section className="w-full py-24 bg-white dark:bg-gray-800">
+        <div className="container px-4 md:px-6 grid gap-10 md:grid-cols-2">
+          <div className="space-y-4">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+              Avatäide OÜ
+            </h2>
+            <p className="text-gray-500 dark:text-gray-400">
+              Tere tulemast Meie kodulehele! Oleme 13 aastat pakkunud oma
+              klientidele kvaliteetseid akende paigaldamise teenuseid, mis
+              hõlmavad akende paigaldust, vahetust ja hooldust.
+            </p>
+            <p className="text-gray-500 dark:text-gray-400">
+              Lisaks kvaliteetsetele teenustele püüame hoida oma hinnad soodsad
+              ja konkurentsivõimelised. Teeme tellimise ja suhtlemise
+              klientidega võimalikult lihtsaks ja mugavaks läbi meie kodulehe,
+              meili või helistades.
+            </p>
+            <p className="text-gray-500 dark:text-gray-400">
+              Täpsustavate küsimuste ja tellimuste vormistamise jaoks on meie
+              peamine esindus Saaremaal, Kuressaares, kuid oleme alati valmis
+              tulema kohapeale olukorraga tutvuma ka teistes Eesti piirkondades.
+            </p>
+            <p className="text-gray-500 dark:text-gray-400">
+              Usalda oma akende paigaldus meie kogenud meeskonna kätesse – koos
+              loome parema ja kaunima kodu!
+            </p>
+          </div>
+          <div className="grid gap-6">
+            <img
+              src="/our_hut.png"
+              width="550"
+              height="310"
+              alt="About Acme Inc."
+              className="mx-auto aspect-video overflow-hidden rounded-xl object-cover object-center sm:w-full"
+            />
+          </div>
+        </div>
+      </section>
+      <section className="w-full py-24 bg-white dark:bg-gray-800">
+        <div className="container px-4 md:px-6 grid gap-10 md:grid-cols-2">
+          <div className="space-y-4">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+              Võta meiega ühendust
+            </h2>
+            <p className="text-gray-500 dark:text-gray-400">
+              Kui on veel mõningaid küsimusi kirjutade meile
+            </p>
+            <Link
+              className="inline-flex h-10 items-center justify-center rounded-md  text-sm font-medium "
+              to="/kontakt"
+            >
+              <Button size={"lg"}>Kontakt</Button>
+            </Link>
+          </div>
+          <div className="space-y-4">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+              Firma kohta info
+            </h2>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <h3 className="text-lg font-medium">Registrikood</h3>
+                <p className="text-gray-500 dark:text-gray-400">12012882</p>
+              </div>
+              <div>
+                <h3 className="text-lg font-medium">KMKR nr</h3>
+                <p className="text-gray-500 dark:text-gray-400">EE101409474</p>
+              </div>
+              <div>
+                <h3 className="text-lg font-medium">Aadress</h3>
+                <p className="text-gray-500 dark:text-gray-400">
+                  Voolu 3, Kuressaare, 93815 Saare maakond
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-medium">Asutatud</h3>
+                <p className="text-gray-500 dark:text-gray-400">28.10.2010</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
