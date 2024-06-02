@@ -6,11 +6,11 @@ import { Button } from "@/components/ui/button";
 export async function action({ request }: ActionFunctionArgs) {
   let randomId = (Math.random() + 1).toString(36).substring(7);
   let randomId2 = (Math.random() + 1).toString(36).substring(3);
-  await db.issue.create({
+  await db.contact.create({
     data: {
-      title: "New Issue" + randomId2,
-      draftId: randomId,
-      description: "This is a new issue",
+      name: randomId,
+      email: randomId2,
+      message: randomId,
     },
   });
   return {
@@ -30,7 +30,7 @@ export default function Index() {
       <h1> Items </h1>
       <ul className={"flex mt-4"}>
         {issue.map((item) => (
-          <li key={item.id}>{item.title}</li>
+          <li key={item.id}>{item.name}</li>
         ))}
       </ul>
       <Form method="POST" className={"mt-8"}>
