@@ -18,7 +18,7 @@ export async function action({ request }: ActionFunctionArgs) {
   };
 }
 export async function loader({ request }: LoaderFunctionArgs) {
-  const issue = await db.issue.findMany();
+  const issue = await db.contact.findMany();
   return json({
     issue,
   });
