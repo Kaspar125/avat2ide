@@ -34,7 +34,7 @@ export default function WindowTypesList() {
                 </CardHeader>
                 <CardContent>
                   <img
-                    src={"public/aknamudelid/" + windowType.img}
+                    src={"aknamudelid/" + windowType.img}
                     alt="bob"
                     width="150"
                     height="150"

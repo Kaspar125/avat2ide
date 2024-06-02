@@ -1,6 +1,9 @@
+import { datetime } from "drizzle-orm/mysql-core";
 import type { BaseSQLiteDatabase } from "drizzle-orm/sqlite-core";
 import { sqliteTable, text } from "drizzle-orm/sqlite-core";
 import { v4 as uuid } from "uuid";
+import { sql } from "drizzle-orm";
+
 
 const stringId = (name: string) =>
 	text(name)
@@ -31,6 +34,9 @@ export const product = sqliteTable("product", {
 
 export const contact = sqliteTable("contact", {
 	id: stringId("id"),
+	email: text("email"),
+	message: text("message"),
+	timestamp: text("timestamp").default(sql`(CURRENT_TIMESTAMP)`),
 });
 
 const schema = {
