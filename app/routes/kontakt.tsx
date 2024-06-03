@@ -1,16 +1,15 @@
 import { Form, useActionData } from "@remix-run/react";
-import {
-  ActionFunctionArgs,
-  json,
-} from "@remix-run/node";
+import { ActionFunctionArgs, json } from "@remix-run/node";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { z } from "zod";
 import { zfd } from "zod-form-data";
-import { toast } from "sonner"
-import {SendNotification} from '@/lib/mail.server';
+import { toast } from "sonner";
+import { SendNotification } from "@/lib/mail.server";
+import ErrorMessage from "@/components/errormsg";
+import { db } from "@/lib/db.server";
 
 const schema = zfd.formData({
   name: zfd.text(z.string().min(2).max(255)),
@@ -22,14 +21,31 @@ export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
   const validation = await schema.safeParseAsync(formData);
   if (!validation.success) {
-    toast("Kontaktivorm saatmine ebaõnnestus! Palun proovi uuesti.")
+    toast("Kontaktivorm saatmine ebaõnnestus! Palun proovi uuesti.");
     return json(validation.error, {
       status: 400,
     });
     // return redirect("/tooted"); TODO: uncomment this line
   }
-  await SendNotification(validation.data.email, validation.data.name, validation.data.message);
-  toast("Kontaktivorm saadetud! Vastame peatselt.")
+
+  try {
+    await db.contact.create({
+      data: {
+        name: validation.data.name,
+        email: validation.data.email,
+        message: validation.data.message,
+      },
+    });
+  } catch (error) {
+    console.error("Error creating contact:", error);
+  }
+
+  await SendNotification(
+    validation.data.email,
+    validation.data.name,
+    validation.data.message
+  );
+  toast("Kontaktivorm saadetud! Vastame peatselt.");
   return json({ success: true });
 }
 
@@ -44,6 +60,7 @@ export default function product() {
             <div className="space-y-1">
               <Label htmlFor="name">Name</Label>
               <Input id="name" placeholder="Enter your name" name={"name"} />
+              {/* <ErrorMessage error={data?.errors.name} /> */}
             </div>
             <div className="space-y-1">
               <Label htmlFor="email">Email</Label>
@@ -53,6 +70,7 @@ export default function product() {
                 name={"email"}
                 placeholder="Enter your email"
               />
+              {/* <ErrorMessage error={data?.errors.name} /> */}
             </div>
             <div className="space-y-1">
               <Label htmlFor="message">Message</Label>
@@ -62,6 +80,7 @@ export default function product() {
                 placeholder="Enter your message"
                 className="min-h-[100px]"
               />
+              {/* <ErrorMessage error={data?.errors.name} /> */}
             </div>
           </div>
           <div className="mt-4">

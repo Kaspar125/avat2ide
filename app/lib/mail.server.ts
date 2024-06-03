@@ -5,7 +5,7 @@ export async function SendNotification(email: string, name:string, message: stri
     const resend = new Resend(process.env.RESEND_API_KEY);
     const ADMIN_EMAIL = process.env.ADMIN_EMAIL as string;
     await resend.emails.send({
-        from: 'teavitused@avataide.ee',
+        from: 'delivered@resend.dev',
         to: ADMIN_EMAIL,
         cc: ADMIN_EMAIL,
         reply_to: email,
