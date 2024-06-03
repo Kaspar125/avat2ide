@@ -17,6 +17,7 @@ import {
 } from "@/components/theme-switcher";
 
 import "./globals.css";
+import {Toaster} from '@/components/ui/sonner';
 
 function App({children}: { children: React.ReactNode }) {
     return (
@@ -33,6 +34,7 @@ function App({children}: { children: React.ReactNode }) {
             <Header/>
             {children}
             {<Footer/>}
+            <Toaster />
             <ScrollRestoration/>
             <Scripts/>
             </body>

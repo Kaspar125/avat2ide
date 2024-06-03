@@ -1,9 +1,7 @@
-import { Form, useActionData, useLoaderData } from "@remix-run/react";
+import { Form, useActionData } from "@remix-run/react";
 import {
   ActionFunctionArgs,
   json,
-  LoaderFunctionArgs,
-  redirect,
 } from "@remix-run/node";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -11,6 +9,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { z } from "zod";
 import { zfd } from "zod-form-data";
+import { toast } from "sonner"
+import {SendNotification} from '@/lib/mail.server';
 
 const schema = zfd.formData({
   name: zfd.text(z.string().min(2).max(255)),
@@ -22,18 +22,20 @@ export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
   const validation = await schema.safeParseAsync(formData);
   if (!validation.success) {
-    console.error("NOK");
+    toast("Kontaktivorm saatmine ebaõnnestus! Palun proovi uuesti.")
     return json(validation.error, {
       status: 400,
     });
     // return redirect("/tooted"); TODO: uncomment this line
   }
+  await SendNotification(validation.data.email, validation.data.name, validation.data.message);
+  toast("Kontaktivorm saadetud! Vastame peatselt.")
   return json({ success: true });
 }
 
 export default function product() {
   const data = useActionData<typeof action>();
-  console.log(JSON.stringify(data));
+  console.log(JSON.stringify(data)); //TODO-KASPAR siit saad errorid kätte brauseris dev tools konsoolist
   return (
     <div className="border-2 border-indigo-500 flex min-h-screen place-content-center space-x-8 py-12 ">
       <div className="w-[450px] ">
