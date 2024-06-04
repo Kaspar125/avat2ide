@@ -11,7 +11,7 @@ import { SendNotification } from "@/lib/mail.server";
 import ErrorMessage from "@/components/errormsg";
 import { db } from "@/lib/db.server";
 import { ZodError } from "zod";
-import getErrorsForField from "@/lib/FormInpuError";
+import getErrorsForField, {FormInpuError} from "@/lib/FormInpuError";
 
 const schema = zfd.formData({
   name: zfd.text(z.string().min(2).max(255)),
@@ -53,10 +53,10 @@ export async function action({ request }: ActionFunctionArgs) {
 
 export default function product() {
   const data = useActionData<typeof action>();
-  console.log(JSON.stringify(data)); //TODO-KASPAR siit saad errorid kätte brauseris dev tools konsoolist
-  const nameErrors = !data ? null : getErrorsForField(data, “name”);
-  const emailErrors = !data ? null : getErrorsForField(data, “email”);
-  const messageErrors = !data ? null : getErrorsForField(data, “message”);
+
+  const nameErrors = getErrorsForField("name", data as FormInpuError | undefined);
+  const emailErrors = getErrorsForField("email", data as FormInpuError | undefined);
+  const messageErrors = getErrorsForField("message", data as FormInpuError | undefined);
   return (
     <div className="border-2 border-indigo-500 flex min-h-screen place-content-center space-x-8 py-12 ">
       <div className="w-[450px] ">
