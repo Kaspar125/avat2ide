@@ -11,7 +11,7 @@ import { SendNotification } from "@/lib/mail.server";
 import ErrorMessage from "@/components/errormsg";
 import { db } from "@/lib/db.server";
 import { ZodError } from "zod";
-import getErrorsForField, {FormInpuError} from "@/lib/FormInpuError";
+import getErrorsForField, { FormInpuError } from "@/lib/FormInpuError";
 
 const schema = zfd.formData({
   name: zfd.text(z.string().min(2).max(255)),
@@ -54,11 +54,20 @@ export async function action({ request }: ActionFunctionArgs) {
 export default function product() {
   const data = useActionData<typeof action>();
 
-  const nameErrors = getErrorsForField("name", data as FormInpuError | undefined);
-  const emailErrors = getErrorsForField("email", data as FormInpuError | undefined);
-  const messageErrors = getErrorsForField("message", data as FormInpuError | undefined);
+  const nameErrors = getErrorsForField(
+    "name",
+    data as FormInpuError | undefined
+  );
+  const emailErrors = getErrorsForField(
+    "email",
+    data as FormInpuError | undefined
+  );
+  const messageErrors = getErrorsForField(
+    "message",
+    data as FormInpuError | undefined
+  );
   return (
-    <div className="border-2 border-indigo-500 flex min-h-screen place-content-center space-x-8 py-12 ">
+    <div className="border-2 flex min-h-screen place-content-center space-x-8 py-12 ">
       <div className="w-[450px] ">
         <Form className="w-full max-w-md" method="post">
           <div className="space-y-4">
