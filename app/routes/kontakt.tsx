@@ -10,6 +10,8 @@ import { toast } from "sonner";
 import { SendNotification } from "@/lib/mail.server";
 import ErrorMessage from "@/components/errormsg";
 import { db } from "@/lib/db.server";
+import { ZodError } from "zod";
+import getErrorsForField from "@/lib/FormInpuError";
 
 const schema = zfd.formData({
   name: zfd.text(z.string().min(2).max(255)),
@@ -46,12 +48,15 @@ export async function action({ request }: ActionFunctionArgs) {
     validation.data.message
   );
   toast("Kontaktivorm saadetud! Vastame peatselt.");
-  return json({ success: true });
+  return json({});
 }
 
 export default function product() {
   const data = useActionData<typeof action>();
   console.log(JSON.stringify(data)); //TODO-KASPAR siit saad errorid kätte brauseris dev tools konsoolist
+  const nameErrors = !data ? null : getErrorsForField(data, “name”);
+  const emailErrors = !data ? null : getErrorsForField(data, “email”);
+  const messageErrors = !data ? null : getErrorsForField(data, “message”);
   return (
     <div className="border-2 border-indigo-500 flex min-h-screen place-content-center space-x-8 py-12 ">
       <div className="w-[450px] ">
@@ -60,7 +65,7 @@ export default function product() {
             <div className="space-y-1">
               <Label htmlFor="name">Name</Label>
               <Input id="name" placeholder="Enter your name" name={"name"} />
-              {/* <ErrorMessage error={data?.errors.name} /> */}
+              <ErrorMessage error={nameErrors} />
             </div>
             <div className="space-y-1">
               <Label htmlFor="email">Email</Label>
@@ -70,7 +75,7 @@ export default function product() {
                 name={"email"}
                 placeholder="Enter your email"
               />
-              {/* <ErrorMessage error={data?.errors.name} /> */}
+              <ErrorMessage error={emailErrors} />
             </div>
             <div className="space-y-1">
               <Label htmlFor="message">Message</Label>
@@ -80,7 +85,7 @@ export default function product() {
                 placeholder="Enter your message"
                 className="min-h-[100px]"
               />
-              {/* <ErrorMessage error={data?.errors.name} /> */}
+              <ErrorMessage error={messageErrors} />
             </div>
           </div>
           <div className="mt-4">
