@@ -104,8 +104,8 @@ interface TwoPart extends WindowCommonDetails {
     firstWidth: number;
     firstHeight: number;
     secondOpening: OpeningType;
-    secondWidth: OpeningType;
-    secondHeight: OpeningType;
+    secondWidth: number;
+    secondHeight: number;
 }
 
 interface ThreePart extends WindowCommonDetails {
@@ -225,49 +225,132 @@ const initWindowCommonDetails = (code: WindowCode): WindowCommonDetails => ({
 });
 // Map of window types and their details
 const windowDetailsMap: Record<WindowCode, OnePart | TwoPart | ThreePart | FourPart | TwoPlusOnePart | Special | HalfDoor | HalfDoorLWindow | HalfDoorRWindow | HalfDoorBWindow | GlassDoor | GlassDoorLWindow | GlassDoorRWindow | GlassDoorBWindow | Door> = {
-    [WindowCode.OnePart]: initWindowCommonDetails(WindowCode.OnePart),
+    [WindowCode.OnePart]: {
+        ...initWindowCommonDetails(WindowCode.OnePart),
+        firstOpening: OpeningType.Left,
+    },
     [WindowCode.TwoPart]: {
         ...initWindowCommonDetails(WindowCode.TwoPart),
-        secondWidth: 0,
         firstOpening: OpeningType.Left,
+        firstWidth: 0,
+        firstHeight: 0,
+        secondOpening: OpeningType.Left,
+        secondWidth: 0,
+        secondHeight: 0,
     },
     [WindowCode.ThreePart]: {
         ...initWindowCommonDetails(WindowCode.ThreePart),
+        firstOpening: OpeningType.Left,
+        firstWidth: 0,
+        firstHeight: 0,
+        secondOpening: OpeningType.Left,
+        secondWidth: 0,
+        secondHeight: 0,
+        thirdOpening: OpeningType.Left,
+        thirdWidth: 0,
+        thirdHeight: 0,
     },
     [WindowCode.FourPart]: {
         ...initWindowCommonDetails(WindowCode.FourPart),
+        firstOpening: OpeningType.Left,
+    firstWidth: 0,
+    firstHeight: 0,
+    secondOpening: OpeningType.Left,
+    secondWidth: 0,
+    secondHeight: 0,
+    thirdOpening: OpeningType.Left,
+    thirdWidth: 0,
+    thirdHeight: 0,
+    fourthOpening: OpeningType.Left,
+    fourthWidth: 0,
+    fourthHeight: 0,
     },
     [WindowCode.TwoPlusOnePart]: {
         ...initWindowCommonDetails(WindowCode.TwoPlusOnePart),
+        firstOpening: OpeningType.Left,
+        firstWidth: 0,
+        firstHeight: 0,
+        secondOpening: OpeningType.Left,
+        secondWidth: 0,
+        secondHeight: 0,
+        thirdOpening: OpeningType.Left,
+        thirdWidth: 0,
+        thirdHeight: 0,
     },
     [WindowCode.Special]: {
         ...initWindowCommonDetails(WindowCode.Special),
     },
     [WindowCode.HalfDoor]: {
         ...initWindowCommonDetails(WindowCode.HalfDoor),
+        firstOpening: OpeningType.Left,
     },
     [WindowCode.HalfDoorLWindow]: {
         ...initWindowCommonDetails(WindowCode.HalfDoorLWindow),
+        firstOpening: OpeningType.Left,
+        firstWidth: 0,
+        firstHeight: 0,
+        secondOpening: OpeningType.Left,
+        secondWidth: 0,
+        secondHeight: 0,
     },
     [WindowCode.HalfDoorRWindow]: {
         ...initWindowCommonDetails(WindowCode.HalfDoorRWindow),
+        firstOpening: OpeningType.Left,
+        firstWidth: 0,
+        firstHeight: 0,
+        secondOpening: OpeningType.Left,
+        secondWidth: 0,
+        secondHeight: 0,
     },
     [WindowCode.HalfDoorBWindow]: {
         ...initWindowCommonDetails(WindowCode.HalfDoorBWindow),
+        firstOpening: OpeningType.Left,
+        firstWidth: 0,
+        firstHeight: 0,
+        secondOpening: OpeningType.Left,
+        secondWidth: 0,
+        secondHeight: 0,
+            thirdOpening: OpeningType.Left,
+        thirdWidth: 0,
+        thirdHeight: 0,
     },
     [WindowCode.GlassDoor]: {
         ...initWindowCommonDetails(WindowCode.GlassDoor),
+        firstOpening: OpeningType.Left,
     },
     [WindowCode.GlassDoorLWindow]: {
         ...initWindowCommonDetails(WindowCode.GlassDoorLWindow),
+        firstOpening: OpeningType.Left,
+        firstWidth: 0,
+        firstHeight: 0,
+        secondOpening: OpeningType.Left,
+        secondWidth: 0,
+        secondHeight: 0,
     },
     [WindowCode.GlassDoorRWindow]: {
         ...initWindowCommonDetails(WindowCode.GlassDoorRWindow),
+        firstOpening: OpeningType.Left,
+        firstWidth: 0,
+        firstHeight: 0,
+        secondOpening: OpeningType.Left,
+        secondWidth: 0,
+        secondHeight: 0,
     },
     [WindowCode.GlassDoorBWindow]: {
         ...initWindowCommonDetails(WindowCode.GlassDoorBWindow),
+        firstOpening: OpeningType.Left,
+        firstWidth: 0,
+        firstHeight: 0,
+        secondOpening: OpeningType.Left,
+        secondWidth: 0,
+        secondHeight: 0,
+        thirdOpening: OpeningType.Left,
+        thirdWidth: 0,
+        thirdHeight: 0,
     },
     [WindowCode.Door]: {
         ...initWindowCommonDetails(WindowCode.Door),
+        Opening: DoorOpeningType.Left,
+        OpeningWay: DoorOpeningWayType.In
     },
 };
