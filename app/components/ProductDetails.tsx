@@ -10,7 +10,7 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { ProfileTypes } from "./types";
+import { ProfileTypes } from "../lib/types";
 
 export default function ProfilestypesList() {
   return (

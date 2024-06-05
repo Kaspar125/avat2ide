@@ -10,7 +10,7 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { GlassTypes } from "./types";
+import { GlassTypes } from "../lib/types";
 
 export default function GlasstypesList() {
   return (
