@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { WindowTypes } from "@/components/types";
 import {
   Card,
   CardHeader,
@@ -8,48 +7,64 @@ import {
   CardContent,
   CardFooter,
 } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import GeneratedForm from '@/components/Form/GeneratedForm';
+import {Button} from '@/components/ui/button';
+import {getEnumMapForWindowType, getWindowTypeLabelMap} from '@/components/Form/helpers/labels';
+import {WindowTypes} from '@/lib/windows';
 
 export default function WindowTypesList() {
-  const [selectedWindowType, setSelectedWindowType] = useState("");
+  const [selectedWindowType, setSelectedWindowType] = useState(null);
 
-  const handleSelect = (code: string) => {
-    setSelectedWindowType(code);
+  const handleSelect = (windowType) => {
+    setSelectedWindowType(windowType);
+  };
+
+  const renderForm = () => {
+    if (selectedWindowType) {
+      const labelMap = getWindowTypeLabelMap(selectedWindowType);
+      const enumMap = getEnumMapForWindowType(selectedWindowType);
+      return (
+          <GeneratedForm
+              windowType={selectedWindowType}
+              labelMap={labelMap}
+              enumMap={enumMap}
+              onChange={(newData) => console.log(newData)}
+          />
+      );
+    }
+    return null;
   };
 
   return (
-    <div className="grid grid-cols-3 gap-4 my-6">
-      {WindowTypes.map(
-        (windowType) =>
-          (selectedWindowType === "" ||
-            windowType.code === selectedWindowType) && (
-            <div
-              key={windowType.code}
-              onClick={() => handleSelect(windowType.code)}
-            >
-              <Card className="w-[350px]">
-                <CardHeader>
-                  <CardTitle>{windowType.name}</CardTitle>
-                  <CardDescription></CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <img
-                    src={"aknamudelid/" + windowType.img}
-                    alt="bob"
-                    width="150"
-                    height="150"
-                  />
-                </CardContent>
-                <CardFooter className="flex justify-between">
-                  {windowType.code}
-                </CardFooter>
-              </Card>
-            </div>
-          )
-      )}
-      <input type="hidden" value={selectedWindowType} />
-      <p>Selected Window Type: {selectedWindowType}</p>
-      <Button onClick={() => setSelectedWindowType("")}>Clear</Button>
-    </div>
+      <div>
+        <div className="grid grid-cols-3 gap-4 my-6">
+          {WindowTypes.map((windowType) => (
+              <div
+                  key={windowType.code}
+                  onClick={() => handleSelect(windowType)}
+              >
+                <Card className="w-[350px]">
+                  <CardHeader>
+                    <CardTitle>{windowType.name}</CardTitle>
+                    <CardDescription></CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <img
+                        src={"aknamudelid/" + windowType.img}
+                        alt="bob"
+                        width="150"
+                        height="150"
+                    />
+                  </CardContent>
+                  <CardFooter className="flex justify-between">
+                    {windowType.code}
+                  </CardFooter>
+                </Card>
+              </div>
+          ))}
+        </div>
+        <div>{renderForm()}</div>
+        <Button onClick={() => setSelectedWindowType(null)}>Clear</Button>
+      </div>
   );
 }

@@ -1,32 +1,35 @@
-import React from 'react';
-import {Input} from '@/components/ui/input';
-import {FormItem, FormLabel} from '@/components/ui/form';
-import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from '@/components/ui/select';
-import {Checkbox} from '@/components/ui/checkbox';
+import React, { useState } from 'react';
+import { Input } from '@/components/ui/input';
+import { FormItem, FormLabel } from '@/components/ui/form';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Checkbox } from '@/components/ui/checkbox';
 
 interface FormProps<T> {
-    data: T;
+    windowType: T;
     labelMap: Record<keyof T, string>;
     enumMap?: Record<keyof T, string[]>;
     onChange: (newData: T) => void;
 }
 
 const GeneratedForm = <T extends Record<string, any>>({
-                                                 data,
-                                                 labelMap,
-                                                 enumMap,
-                                                 onChange,
-                                             }: FormProps<T>) => {
+                                                          windowType,
+                                                          labelMap,
+                                                          enumMap,
+                                                          onChange,
+                                                      }: FormProps<T>) => {
+    const [formData, setFormData] = useState<T>(windowType);
+
     const handleChange = <K extends keyof T>(key: K, value: T[K]) => {
-        const newData = {...data, [key]: value};
+        const newData = { ...formData, [key]: value };
+        setFormData(newData);
         onChange(newData);
     };
 
     return (
         <div>
-            {Object.keys(data).map((key) => {
+            {Object.keys(formData).map((key) => {
                 const fieldKey = key as keyof T;
-                const fieldValue = data[fieldKey];
+                const fieldValue = formData[fieldKey];
                 const label = labelMap[fieldKey];
 
                 if (enumMap && typeof fieldValue === 'string' && enumMap[fieldKey]) {
@@ -40,7 +43,7 @@ const GeneratedForm = <T extends Record<string, any>>({
                                 onValueChange={(value) => handleChange(fieldKey, value as T[keyof T])}
                             >
                                 <SelectTrigger className="w-[180px]">
-                                    <SelectValue placeholder="Select an option"/>
+                                    <SelectValue placeholder="Select an option" />
                                 </SelectTrigger>
                                 <SelectContent>
                                     {enumMap[fieldKey].map((option) => (

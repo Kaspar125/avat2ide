@@ -16,3 +16,18 @@ export function getWindowTypeLabelMap<T extends Record<string, any>>(type: T): R
 
     return typeLabelMap;
 }
+
+
+export function getEnumMapForWindowType<T extends Record<string, any>>(windowType: T): Record<keyof T, string[]> {
+    const enumMap: Record<keyof T, string> = {} as Record<keyof T, string>;
+
+    for (const key in windowType) {
+        const fieldValue = windowType[key as keyof T];
+        if (fieldValue instanceof String) {
+            // Assuming enum values are strings
+            enumMap[key as keyof T] = Object.values(fieldValue);
+        }
+    }
+
+    return enumMap;
+}
