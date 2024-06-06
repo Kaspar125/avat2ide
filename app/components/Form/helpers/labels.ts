@@ -1,3 +1,5 @@
+import {ColorType, DoorOpeningType, DoorOpeningWayType, GlassType, OpeningType} from '@/lib/windows';
+
 export const labelMap: Record<string, string> = {
     code: 'Akna tüüp',
     width: 'Laius',
@@ -5,7 +7,7 @@ export const labelMap: Record<string, string> = {
     glass: 'Klaaspakett',
     colorIn: 'Profiilvärv sees',
     colorOut: 'Profiilvärv väljas',
-    addon: 'lisa',
+    addon: 'Lisa',
     singleOpening: 'Avatavus',
     leftOpening: 'Vasakpoolse avatavus',
     leftWidth: 'Vasakpoolse laius',
@@ -25,7 +27,8 @@ export const labelMap: Record<string, string> = {
     doorHeight: 'Ukse kõrgus',
     Opening: 'Avatavus',
     OpeningWay: 'Avanemise suund',
-    // TODO-Kaspar lisa väljad
+    delivery: 'Tarne',
+    installation: 'Paigaldus',
 };
 
 export function getWindowTypeLabelMap<T extends Record<string, any>>(type: T): Record<keyof T, string> {
@@ -42,13 +45,22 @@ export function getWindowTypeLabelMap<T extends Record<string, any>>(type: T): R
 
 
 export function getEnumMapForWindowType<T extends Record<string, any>>(windowType: T): Record<keyof T, string[]> {
-    const enumMap: Record<keyof T, string> = {} as Record<keyof T, string>;
+    const enumMap: Record<keyof T, string[]> = {} as Record<keyof T, string[]>;
 
     for (const key in windowType) {
         const fieldValue = windowType[key as keyof T];
-        if (fieldValue instanceof String) {
-            // Assuming enum values are strings
-            enumMap[key as keyof T] = Object.values(fieldValue);
+
+        // Check if the field value is an enum
+        if (typeof fieldValue === 'string' && Object.values(OpeningType).includes(fieldValue)) {
+            enumMap[key as keyof T] = Object.values(OpeningType);
+        } else if (typeof fieldValue === 'string' && Object.values(GlassType).includes(fieldValue)) {
+            enumMap[key as keyof T] = Object.values(GlassType);
+        } else if (typeof fieldValue === 'string' && Object.values(ColorType).includes(fieldValue)) {
+            enumMap[key as keyof T] = Object.values(ColorType);
+        } else if (typeof fieldValue === 'string' && Object.values(DoorOpeningType).includes(fieldValue)) {
+            enumMap[key as keyof T] = Object.values(DoorOpeningType);
+        } else if (typeof fieldValue === 'string' && Object.values(DoorOpeningWayType).includes(fieldValue)) {
+            enumMap[key as keyof T] = Object.values(DoorOpeningWayType);
         }
     }
 

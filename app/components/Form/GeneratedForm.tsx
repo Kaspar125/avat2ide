@@ -3,6 +3,7 @@ import { Input } from '@/components/ui/input';
 import { FormItem, FormLabel } from '@/components/ui/form';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Checkbox } from '@/components/ui/checkbox';
+import {Label} from '@/components/ui/label';
 
 interface FormProps<T> {
     windowType: T;
@@ -20,7 +21,7 @@ const GeneratedForm = <T extends Record<string, any>>({
     const [formData, setFormData] = useState<T>(windowType);
 
     const handleChange = <K extends keyof T>(key: K, value: T[K]) => {
-        const newData = { ...formData, [key]: value };
+        const newData: T = { ...formData, [key]: value };
         setFormData(newData);
         onChange(newData);
     };
@@ -35,8 +36,8 @@ const GeneratedForm = <T extends Record<string, any>>({
                 if (enumMap && typeof fieldValue === 'string' && enumMap[fieldKey]) {
                     // Render dropdown for enum fields
                     return (
-                        <FormItem key={key}>
-                            <FormLabel>{label}</FormLabel>
+                        <div key={key} className={"mt-2"}>
+                            {label && <Label className={"mt-2"}>{label}</Label>}
                             <Select
                                 name={key}
                                 defaultValue={fieldValue}
@@ -53,41 +54,45 @@ const GeneratedForm = <T extends Record<string, any>>({
                                     ))}
                                 </SelectContent>
                             </Select>
-                        </FormItem>
+                        </div>
                     );
                 }
+
 
                 if (typeof fieldValue === 'boolean') {
                     // Render checkbox for boolean fields
                     return (
-                        <FormItem key={key}>
-                            <FormLabel>
+                        <div key={key} className={"flex align-middle mb-2"}>
+                            <Label className={"mt-2"}>
+                                {label}
                                 <Checkbox
+                                    className={"ml-4 mt-1"}
                                     id={key}
                                     name={key}
                                     checked={fieldValue}
                                     onCheckedChange={(value) => {
                                         if (typeof value === 'boolean') {
-                                            handleChange(fieldKey, value);
+                                            handleChange(fieldKey, value as T[keyof T]);
                                         }
                                     }}
                                 />
-                                {label}
-                            </FormLabel>
-                        </FormItem>
+                            </Label>
+                        </div>
                     );
                 }
 
                 // Render input field for other field types
                 return (
-                    <FormItem key={key}>
-                        <FormLabel>{label}</FormLabel>
+                    <div key={key}>
+                        {(label && key !== 'code') && <Label className={"mt-2"}>{label}</Label>}
                         <Input
+                            className={"mt-2 mb-4 w-full"}
+                            type={key === "code" ? 'hidden': typeof fieldValue === 'number' ? 'number' : 'text'}
                             name={key}
                             defaultValue={fieldValue}
                             onChange={(value) => handleChange(fieldKey, value as T[keyof T])}
                         />
-                    </FormItem>
+                    </div>
                 );
             })}
         </div>

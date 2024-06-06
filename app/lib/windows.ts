@@ -91,7 +91,8 @@ interface WindowCommonDetails {
     colorIn: ColorType;
     colorOut: ColorType;
     addon: string;
-    // Add other common fields here
+    delivery:boolean;
+    installation:boolean;
 }
 
 // Define interfaces for specific window types
@@ -211,9 +212,11 @@ const initWindowCommonDetails = (code: WindowCode): WindowCommonDetails => ({
     colorIn: ColorType.White,
     colorOut: ColorType.White,
     addon:"",
+    delivery:true,
+    installation:true
 });
 // Map of window types and their details
-const windowDetailsMap: Record<WindowCode, OnePart | TwoPart | ThreePart | FourPart | TwoPlusOnePart | Special | HalfDoor | HalfDoorLWindow | HalfDoorRWindow | HalfDoorBWindow | GlassDoor | GlassDoorLWindow | GlassDoorRWindow | GlassDoorBWindow | Door> = {
+export const windowDetailsMap: Record<WindowCode, OnePart | TwoPart | ThreePart | FourPart | TwoPlusOnePart | Special | HalfDoor | HalfDoorLWindow | HalfDoorRWindow | HalfDoorBWindow | GlassDoor | GlassDoorLWindow | GlassDoorRWindow | GlassDoorBWindow | Door> = {
     [WindowCode.OnePart]: {
         ...initWindowCommonDetails(WindowCode.OnePart),
         singleOpening: OpeningType.Left,
