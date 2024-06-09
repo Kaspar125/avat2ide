@@ -73,9 +73,8 @@ export default function orderForm() {
         <Form className="w-full max-w-md" method="post">
           <div className="space-y-4">
             <div className="space-y-1">
-              <Label htmlFor="name">Name</Label>
-              <Input id="name" placeholder="Enter your name" name={"name"} />
-              <ErrorMessage error={nameErrors} />
+              <Label htmlFor="name">Nimi</Label>
+              <Input id="name" placeholder="Sisesta nimi" name={"name"} />
             </div>
             <div className="space-y-1">
               <Label htmlFor="email">Email</Label>
@@ -83,19 +82,33 @@ export default function orderForm() {
                 id="email"
                 type="email"
                 name={"email"}
-                placeholder="Enter your email"
+                placeholder="Sisesta email"
               />
-              <ErrorMessage error={emailErrors} />
             </div>
             <div className="space-y-1">
-              <Label htmlFor="message">Message</Label>
+              <Label htmlFor="tel">Telefoninumber</Label>
+              <Input
+                id="tel"
+                placeholder="Sisesta telefoninumber"
+                name={"tel"}
+              />
+            </div>
+            <div className="space-y-1">
+              <Label htmlFor="name">Asukoht</Label>
+              <Input id="place" placeholder="Saaremaa" name={"name"} />
+            </div>
+            <div className="space-y-1">
+              <Label htmlFor="name">Aadress</Label>
+              <Input id="name" placeholder="Aadress" name={"name"} />
+            </div>
+            <div className="space-y-1">
+              <Label htmlFor="message">Sõnum</Label>
               <Textarea
                 id="message"
                 name={"message"}
-                placeholder="Enter your message"
+                placeholder="Sisesta sõnum"
                 className="min-h-[100px]"
               />
-              <ErrorMessage error={messageErrors} />
             </div>
           </div>
           <div className="mt-4">

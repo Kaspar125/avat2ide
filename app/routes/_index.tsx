@@ -1,5 +1,5 @@
 import { json, LoaderFunctionArgs } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import { Link, useLoaderData } from "@remix-run/react";
 import { Button } from "@/components/ui/button";
 import { FlipWords } from "@/components/aceterntiy/flip-words";
 
@@ -37,7 +37,12 @@ export default function Index() {
               muudavad teie kodu või ärihoone paremaks ja kaunimaks.
             </p>
           </div>
-          <Button>MEIST LÄHEMALT</Button>
+          <Link
+            className="inline-flex h-10 items-center justify-center rounded-md  text-sm font-medium "
+            to="/firmast"
+          >
+            <Button size={"lg"}>Meist lähemalt</Button>
+          </Link>
         </div>
       </div>
       <div className="container grid gap-8 px-4 md:px-6 py-12">
@@ -108,7 +113,12 @@ export default function Index() {
         </div>
       </div>
       <div className="flex justify-center">
-        <Button size={"lg"}>Tellima</Button>
+        <Link
+          className="inline-flex h-10 items-center justify-center rounded-md  text-sm font-medium "
+          to="/hinnaparing"
+        >
+          <Button size={"lg"}>Tellima</Button>
+        </Link>
       </div>
     </section>
   );

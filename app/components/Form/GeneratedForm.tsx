@@ -10,6 +10,8 @@ import {
 } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
+import { Link } from "@remix-run/react";
+import { Button } from "../ui/button";
 
 interface FormProps<T> {
   windowType: T;
@@ -110,6 +112,12 @@ const GeneratedForm = <T extends Record<string, any>>({
           </div>
         );
       })}
+      <Link
+        className="inline-flex h-10 items-center justify-center rounded-md  text-sm font-medium "
+        to="/paring"
+      >
+        <Button size={"lg"}>Tellima</Button>
+      </Link>
     </div>
   );
 };

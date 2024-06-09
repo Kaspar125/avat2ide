@@ -91,7 +91,7 @@ export default function product() {
                 id="email"
                 type="email"
                 name={"email"}
-                placeholder="siseta email"
+                placeholder="Siseta email"
               />
               <ErrorMessage error={emailErrors} />
             </div>
