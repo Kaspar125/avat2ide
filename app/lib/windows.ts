@@ -28,8 +28,8 @@ export enum OpeningType {
 }
 
 export enum DoorsOpeningType {
-    Left = "Vasakult",
-    Right = "Paremalt",
+    Left = "Vasakult poolt",
+    Right = "Paremalt poolt",
 }
 export enum DoorOpeningWayType {
     In = "Sisse",
@@ -331,7 +331,7 @@ export const windowDetailsMap: Record<WindowCode, OnePart | TwoPart | ThreePart 
     },
     [WindowCode.Door]: {
         ...initWindowCommonDetails(WindowCode.Door),
-        outDoorOpening: DoorsOpeningType.Left,
+        outDoorOpening: DoorsOpeningType.Right,
         OpeningWay: DoorOpeningWayType.In
     },
 };

@@ -94,7 +94,6 @@ export default function WindowTypesList() {
         <Form method="post">
           <div className="grid grid-cols-2 gap-4">{renderForm()}</div>
         </Form>
-        <Button onClick={() => setSelectedWindowType(null)}>Tühjenda</Button>
       </div>
     </div>
   );

@@ -13,12 +13,16 @@ export interface FormInpuError {
     name: string;
 }
 
-export default function getErrorsForField(fieldName: string, zodError?: FormInpuError  | undefined): string {
-    if (!zodError)
-        return '';
+export default function getErrorsForField(
+    fieldName: string,
+    zodError?: FormInpuError | undefined
+  ): string {
+    if (!zodError ||!zodError.issues) {
+      return '';
+    }
     const errors = zodError.issues
-        .filter((issue) => issue.path.includes(fieldName))
-        .map((issue) => issue.message);
-
+     .filter((issue) => issue.path.includes(fieldName))
+     .map((issue) => issue.message);
+  
     return errors.join(', ');
-}
+  }

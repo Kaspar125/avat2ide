@@ -44,13 +44,14 @@ export default function AddonTypesList() {
                 className="aspect-square object-cover border border-gray-200 w-full rounded-lg overflow-hidden dark:border-gray-800"
               />
               <div className="prose">{product.desc}</div>
-              <div className="prose">{product.desc2}</div>
+              <div className="prose">
+                <a href={product.desc2}>{product.desc2}</a>
+              </div>
             </div>
             <DialogFooter></DialogFooter>
           </DialogContent>
         </Dialog>
       ))}
-      ;
     </section>
   );
 }

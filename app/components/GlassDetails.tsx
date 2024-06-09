@@ -50,7 +50,6 @@ export default function GlasstypesList() {
           </DialogContent>
         </Dialog>
       ))}
-      ;
     </section>
   );
 }
