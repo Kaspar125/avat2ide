@@ -10,12 +10,12 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { ProfileTypes } from "../lib/types";
+import { AddonTypes } from "../lib/types";
 
-export default function ProfilestypesList() {
+export default function AddonTypesList() {
   return (
     <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4 md:p-6">
-      {ProfileTypes.map((product) => (
+      {AddonTypes.map((product) => (
         <Dialog>
           <DialogTrigger asChild>
             <div className="relative group overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-transform duration-300 ease-in-out hover:-translate-y-2 cursor-pointer">

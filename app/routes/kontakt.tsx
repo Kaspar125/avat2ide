@@ -67,7 +67,7 @@ export default function product() {
     data as FormInpuError | undefined
   );
   return (
-    <div className="border-2 flex min-h-screen place-content-center space-x-8 py-12 ">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-6xl mx-auto py-12 px-4 md:px-6 ">
       <div className="w-[450px] ">
         <Form className="w-full max-w-md" method="post">
           <div className="space-y-4">

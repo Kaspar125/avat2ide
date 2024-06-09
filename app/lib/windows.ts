@@ -27,7 +27,7 @@ export enum OpeningType {
     None = "Mitteavatav",
 }
 
-export enum DoorOpeningType {
+export enum DoorsOpeningType {
     Left = "Vasakult",
     Right = "Paremalt",
 }
@@ -200,7 +200,7 @@ interface GlassDoorBWindow extends WindowCommonDetails {
     rightHeight: number;
 }
 interface Door extends WindowCommonDetails {
-    Opening: DoorOpeningType;
+    outDoorOpening: DoorsOpeningType;
     OpeningWay: DoorOpeningWayType;
 }
 
@@ -331,7 +331,7 @@ export const windowDetailsMap: Record<WindowCode, OnePart | TwoPart | ThreePart 
     },
     [WindowCode.Door]: {
         ...initWindowCommonDetails(WindowCode.Door),
-        Opening: DoorOpeningType.Left,
+        outDoorOpening: DoorsOpeningType.Left,
         OpeningWay: DoorOpeningWayType.In
     },
 };

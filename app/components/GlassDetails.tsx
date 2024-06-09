@@ -46,9 +46,7 @@ export default function GlasstypesList() {
               <div className="prose">{product.desc}</div>
               <div className="prose">{product.desc2}</div>
             </div>
-            <DialogFooter>
-              <Button type="submit">Buy Now</Button>
-            </DialogFooter>
+            <DialogFooter></DialogFooter>
           </DialogContent>
         </Dialog>
       ))}

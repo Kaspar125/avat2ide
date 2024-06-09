@@ -1,31 +1,31 @@
-import {ColorType, DoorOpeningType, DoorOpeningWayType, GlassType, OpeningType} from '@/lib/windows';
+import {ColorType, DoorsOpeningType, DoorOpeningWayType, GlassType, OpeningType} from '@/lib/windows';
 
 export const labelMap: Record<string, string> = {
     code: 'Akna tüüp',
-    width: 'Laius',
-    height: 'Kõrgus',
+    width: 'Kogu laius (mm)',
+    height: 'Kogu kõrgus (mm)',
     glass: 'Klaaspakett',
     colorIn: 'Profiilvärv sees',
     colorOut: 'Profiilvärv väljas',
     addon: 'Lisa',
     singleOpening: 'Avatavus',
     leftOpening: 'Vasakpoolse avatavus',
-    leftWidth: 'Vasakpoolse laius',
+    leftWidth: 'Vasakpoolse laius (mm)',
     rightOpening: 'Parempoolse avatavus',
-    rightWidth: 'Parempoolse laius',
+    rightWidth: 'Parempoolse laius (mm)',
     middleOpening: 'Keskmine avatavus',
-    middleWidth: 'Keskmise laius',
+    middleWidth: 'Keskmise laius (mm)',
     middleLeftOpening: 'Teise jaotuse avatavus',
-    middleLeftWidth: 'Teise jaotuse laius',
+    middleLeftWidth: 'Teise jaotuse laius (mm)',
     middleRightOpening: 'Kolmanda jaotuse avatavus',
-    middleRightWidth: 'Kolmanda jaotuse laius',
-    downHeight: 'Alumine kõrgus',
+    middleRightWidth: 'Kolmanda jaotuse laius (mm)',
+    downHeight: 'Alumine kõrgus (mm)',
     topOpening: 'Ülemine avatavus',
     topHeight: 'Ülemine avatavus',
     doorOpening: 'Ukse avatavus',
-    doorWidth: 'Ukse laius',
+    doorWidth: 'Ukse laius (mm)',
     doorHeight: 'Ukse kõrgus',
-    Opening: 'Avatavus',
+    outDoorOpening: 'Ukse Avatavus',
     OpeningWay: 'Avanemise suund',
     delivery: 'Tarne',
     installation: 'Paigaldus',
@@ -57,8 +57,8 @@ export function getEnumMapForWindowType<T extends Record<string, any>>(windowTyp
             enumMap[key as keyof T] = Object.values(GlassType);
         } else if (typeof fieldValue === 'string' && Object.values(ColorType).includes(fieldValue)) {
             enumMap[key as keyof T] = Object.values(ColorType);
-        } else if (typeof fieldValue === 'string' && Object.values(DoorOpeningType).includes(fieldValue)) {
-            enumMap[key as keyof T] = Object.values(DoorOpeningType);
+        } else if (typeof fieldValue === 'string' && Object.values(DoorsOpeningType).includes(fieldValue)) {
+            enumMap[key as keyof T] = Object.values(DoorsOpeningType);
         } else if (typeof fieldValue === 'string' && Object.values(DoorOpeningWayType).includes(fieldValue)) {
             enumMap[key as keyof T] = Object.values(DoorOpeningWayType);
         }

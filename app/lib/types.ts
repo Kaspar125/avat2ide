@@ -75,3 +75,39 @@ export const GlassTypes: Product[] = [
       "Kõik toonklaasid ei tule kohe koos päikesekaitsega. Kui on aga soov päikesekaitsega toonklaasile, siis peab seda eraldi mainima.",
   },
 ];
+
+export const AddonTypes: Product[] = [
+  {
+    code: "insectnet",
+    name: "Putukuavõrk",
+    img: "putukavõrk.PNG",
+    desc: "Putukavõrke leidub erinevaid. On raamiga putukavõrgud, mis kinnituvad klambriga akna külge, leidub ka akna külge kleebitavaid, hingedega lahtikäivaid, magnetiga kinnitatavaid ja ettetõmmatavaid putukavõrke.",
+    desc2: "",
+  },
+  {
+    code: "käepidem",
+    name: "Käepidemed",
+    img: "käepidemed.PNG",
+    desc: "Aknale on võimalik valida paljudest erinevatest materjalide välimustest (tavaliselt kas plastiku või metalli välimusega), värvidest ja kujudest käepidemeid.",
+    desc2:
+      "",
+  },
+  {
+    code: "aknalaud",
+    name: "Aknalauad",
+    img: "aknalaud.PNG",
+    desc: "PVC materjalist aknalaud",
+    desc2:
+      "",
+  },
+  {
+    code: "värvid",
+    name: "Värvid",
+    img: "värvid.png",
+    desc: "Profiilile saate valida värvi enam kui 200 toonist. Sise- ja väliskülje saab eraldi valida.",
+    desc2:
+      "https://www.rehau.com/downloads/651608/kaleido-paint.pdf",
+  },
+
+
+];

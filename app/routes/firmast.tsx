@@ -19,8 +19,8 @@ export default function About() {
             </h2>
             <p className="text-gray-500 dark:text-gray-400">
               Tere tulemast Meie kodulehele! Oleme 13 aastat pakkunud oma
-              klientidele kvaliteetseid akende paigaldamise teenuseid, mis
-              hõlmavad akende paigaldust, vahetust ja hooldust.
+              klientidele kvaliteetseid teenuseid, mis hõlmavad akende ja uste
+              müüki, paigaldust, vahetust, hooldust jne.
             </p>
             <p className="text-gray-500 dark:text-gray-400">
               Lisaks kvaliteetsetele teenustele püüame hoida oma hinnad soodsad
@@ -29,13 +29,14 @@ export default function About() {
               meili või helistades.
             </p>
             <p className="text-gray-500 dark:text-gray-400">
-              Täpsustavate küsimuste ja tellimuste vormistamise jaoks on meie
-              peamine esindus Saaremaal, Kuressaares, kuid oleme alati valmis
-              tulema kohapeale olukorraga tutvuma ka teistes Eesti piirkondades.
+              Täpsustavate küsimuste või tellimuste vormistamisel võta julgsesti
+              meiega ühendust. Meie esindus asub küll Saaremaal, Kuressaares,
+              kuid oleme alati valmis tulema kohapeale ja olukorraga tutvuma ka
+              teistes Eesti piirkondades.
             </p>
             <p className="text-gray-500 dark:text-gray-400">
-              Usalda oma akende paigaldus meie kogenud meeskonna kätesse – koos
-              loome parema ja kaunima kodu!
+              Usalda oma uued aknad ja uksed meie kogenud meeskonna kätesse –
+              koos loome parema ja kaunima kodu!
             </p>
           </div>
           <div className="grid gap-6">
